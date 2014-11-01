@@ -3,7 +3,6 @@ import java.io.File;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,12 +10,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.Select;
 
-import com.sun.org.apache.bcel.internal.generic.IFNE;
-
-
 public class AutoQ2 {
 	private static WebDriver driver;
 	private static String baseUrl;
+	public static final String DNS_NAME = "ec2-54-164-130-142.compute-1.amazonaws.com";
 
 	public static void main(String[] args) {
 		// setup env
@@ -25,13 +22,8 @@ public class AutoQ2 {
 		driver = new FirefoxDriver(profile);
 	    baseUrl = "https://15619project.org/";
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    
-		int i = 0;
+
 		while (true) {
-			// control how many time we want to try 
-//			if (i++ > 100) {
-//				break;
-//			}
 			String curStatus = null;
 			
 			// go to submission page 
@@ -57,7 +49,7 @@ public class AutoQ2 {
 			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("MySQL");
 			    mySleep(300);
 			    driver.findElement(By.id("URL")).clear();
-			    driver.findElement(By.id("URL")).sendKeys("ec2-54-164-130-142.compute-1.amazonaws.com");
+			    driver.findElement(By.id("URL")).sendKeys(DNS_NAME);
 			    mySleep(300);
 			    new Select(driver.findElement(By.id("Duration"))).selectByVisibleText(runTime.toString());
 			    mySleep(300);
@@ -87,7 +79,7 @@ public class AutoQ2 {
 	{  
 	  try  
 	  {  
-	    int d = Integer.parseInt(str);  
+	    Integer.parseInt(str);  
 	  }  
 	  catch(NumberFormatException nfe)  
 	  {  
@@ -105,9 +97,9 @@ public class AutoQ2 {
 	public static Integer getRunTime(WebDriver inDriver) {
 		String score = null;
 		Random rand = new Random();
-//		if (rand.nextInt(50) > 10 ) {
-//			return 1;
-//		}
+		if (rand.nextInt(50) > 20 ) {
+			return 1;
+		}
 		
 		try {
 			WebElement element =
@@ -137,7 +129,7 @@ public class AutoQ2 {
 	{  
 	  try  
 	  {  
-	    double d = Double.parseDouble(str);  
+	    Double.parseDouble(str);  
 	  }  
 	  catch(NumberFormatException nfe)  
 	  {  

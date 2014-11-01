@@ -1,6 +1,5 @@
 package auto;
 import java.io.File;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -14,7 +13,8 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ1 {
 	private static WebDriver driver;
 	private static String baseUrl;
-
+	public static final String DNS_NAME = "ec2-54-164-130-142.compute-1.amazonaws.com";
+	
 	public static void main(String[] args) {
 		// setup env
 		final FirefoxProfile profile = 
@@ -22,13 +22,8 @@ public class AutoQ1 {
 		driver = new FirefoxDriver(profile);
 	    baseUrl = "https://15619project.org/";
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    
-		int i = 0;
+
 		while (true) {
-			// control how many time we want to try 
-//			if (i++ > 10) {
-//				break;
-//			}
 			String curStatus = null;
 			
 			// go to submission page 
@@ -47,7 +42,7 @@ public class AutoQ1 {
 			    driver.get(baseUrl + "/scoreboard/1/3/");
 			    driver.findElement(By.id("nav_submit")).click();
 			    driver.findElement(By.id("nav_submit_")).click();
-			    driver.findElement(By.id("URL")).sendKeys("ec2-54-172-82-31.compute-1.amazonaws.com");
+			    driver.findElement(By.id("URL")).sendKeys(DNS_NAME);
 			    new Select(driver.findElement(By.id("Duration"))).selectByVisibleText("1"); // 1 min
 			    driver.findElement(By.name("proceed")).click();
 			    mySleep(1000);
@@ -74,7 +69,7 @@ public class AutoQ1 {
 	{  
 	  try  
 	  {  
-	    double d = Integer.parseInt(str);  
+	    Integer.parseInt(str);  
 	  }  
 	  catch(NumberFormatException nfe)  
 	  {  
