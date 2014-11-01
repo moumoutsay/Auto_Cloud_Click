@@ -1,14 +1,17 @@
 package auto;
 import java.io.File;
-
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.Select;
+
+import com.sun.org.apache.bcel.internal.generic.IFNE;
 
 
 public class AutoQ2 {
@@ -26,9 +29,9 @@ public class AutoQ2 {
 		int i = 0;
 		while (true) {
 			// control how many time we want to try 
-			if (i++ > 100) {
-				break;
-			}
+//			if (i++ > 100) {
+//				break;
+//			}
 			String curStatus = null;
 			
 			// go to submission page 
@@ -40,9 +43,10 @@ public class AutoQ2 {
 				curStatus = element.getText();
 				System.out.println(curStatus);
 			}	catch (Exception e) { }
-			
+
 			// check if can submit not 
 			if (curStatus.equals("DONE") || curStatus.equals("FAILED") || curStatus.equals("CANCELED")) {
+				Integer runTime = getRunTime(driver);
 				System.out.println("Can submit now");
 			    driver.get(baseUrl + "/scoreboard/1/3/");
 			    driver.findElement(By.id("nav_submit")).click();
@@ -53,9 +57,9 @@ public class AutoQ2 {
 			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("MySQL");
 			    mySleep(300);
 			    driver.findElement(By.id("URL")).clear();
-			    driver.findElement(By.id("URL")).sendKeys("ec2-54-172-82-31.compute-1.amazonaws.com");
+			    driver.findElement(By.id("URL")).sendKeys("ec2-54-164-130-142.compute-1.amazonaws.com");
 			    mySleep(300);
-			    new Select(driver.findElement(By.id("Duration"))).selectByVisibleText("1");
+			    new Select(driver.findElement(By.id("Duration"))).selectByVisibleText(runTime.toString());
 			    mySleep(300);
 			    driver.findElement(By.name("proceed")).click();
 			    mySleep(1000);
@@ -68,14 +72,15 @@ public class AutoQ2 {
 				} catch (Exception e) {}
 				if (isNumeric(curStatus)) {
 					timeToSleep = Integer.parseInt(curStatus);
-					if ( timeToSleep < 10) timeToSleep = 10;
+					if ( timeToSleep < 3) timeToSleep = 3;
+					if ( timeToSleep > 100) timeToSleep = 100;
  				} 
 				System.out.println("time remain" + timeToSleep);
 				mySleep(1000*timeToSleep);
 			}
 		}
-		mySleep(10000000);
- 		driver.close();
+//		mySleep(10000000);
+// 		driver.close();
 	}
 	
 	public static boolean isNumeric(String str)  
@@ -95,5 +100,49 @@ public class AutoQ2 {
 		try {
 			Thread.sleep(timeToSleep);
 		} catch ( Exception e) {}
+	}
+	
+	public static Integer getRunTime(WebDriver inDriver) {
+		String score = null;
+		Random rand = new Random();
+//		if (rand.nextInt(50) > 10 ) {
+//			return 1;
+//		}
+		
+		try {
+			WebElement element =
+				driver.findElement(By.xpath("//*[@id=\"table\"]/tbody/tr[1]/td[13]"));
+			score = element.getText();
+		} catch ( Exception e) {}
+		if (isDouble(score)) {
+			System.out.println("cur score"  + score);
+			double realVal = Double.parseDouble(score);
+			if (realVal > 40.0) {
+				System.out.println("return 3"  + realVal);
+				return 3;
+			}
+			if (realVal > 70.0) {
+				System.out.println("return 5"  + realVal);
+				return 5;
+			}
+			if (realVal > 90.0) {
+				System.out.println("return 10"  + realVal);
+				return 10;
+			}
+		} 
+		return 1;
+	}
+	
+	public static boolean isDouble(String str)  
+	{  
+	  try  
+	  {  
+	    double d = Double.parseDouble(str);  
+	  }  
+	  catch(NumberFormatException nfe)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
 	}
 }

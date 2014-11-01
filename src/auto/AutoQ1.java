@@ -26,9 +26,9 @@ public class AutoQ1 {
 		int i = 0;
 		while (true) {
 			// control how many time we want to try 
-			if (i++ > 10) {
-				break;
-			}
+//			if (i++ > 10) {
+//				break;
+//			}
 			String curStatus = null;
 			
 			// go to submission page 
@@ -66,8 +66,8 @@ public class AutoQ1 {
 				mySleep(1000*timeToSleep);
 			}
 		}
-		mySleep(10000000);
- 		driver.close();
+		//mySleep(10000000);
+ 		//driver.close();
 	}
 	
 	public static boolean isNumeric(String str)  
