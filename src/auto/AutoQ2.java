@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ2 {
 	private static WebDriver driver;
 	private static String baseUrl;
-	public static final String DNS_NAME = "ec2-54-164-130-142.compute-1.amazonaws.com";
+	public static final String DNS_NAME = "MySQLq2-1758896838.us-east-1.elb.amazonaws.com";
 
 	public static void main(String[] args) {
 		// setup env
@@ -65,7 +65,7 @@ public class AutoQ2 {
 				if (isNumeric(curStatus)) {
 					timeToSleep = Integer.parseInt(curStatus);
 					if ( timeToSleep < 3) timeToSleep = 3;
-					if ( timeToSleep > 100) timeToSleep = 100;
+					if ( timeToSleep > 100) timeToSleep = 50;
  				} 
 				System.out.println("time remain" + timeToSleep);
 				mySleep(1000*timeToSleep);
@@ -97,7 +97,7 @@ public class AutoQ2 {
 	public static Integer getRunTime(WebDriver inDriver) {
 		String score = null;
 		Random rand = new Random();
-		if (rand.nextInt(50) > 20 ) {
+		if (rand.nextInt(50) > 5 ) {
 			return 1;
 		}
 		
@@ -109,18 +109,20 @@ public class AutoQ2 {
 		if (isDouble(score)) {
 			System.out.println("cur score"  + score);
 			double realVal = Double.parseDouble(score);
-			if (realVal > 40.0) {
-				System.out.println("return 3"  + realVal);
-				return 3;
+			if (realVal > 90.0) {
+				System.out.println("return 10"  + realVal);
+				return 10;
 			}
 			if (realVal > 70.0) {
 				System.out.println("return 5"  + realVal);
 				return 5;
 			}
-			if (realVal > 90.0) {
-				System.out.println("return 10"  + realVal);
-				return 10;
+			if (realVal > 40.0) {
+				System.out.println("return 3"  + realVal);
+				return 3;
 			}
+			
+			
 		} 
 		return 1;
 	}
