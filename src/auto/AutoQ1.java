@@ -55,7 +55,7 @@ public class AutoQ1 {
 				} catch (Exception e) {}
 				if (isNumeric(curStatus)) {
 					timeToSleep = Integer.parseInt(curStatus);
-					if ( timeToSleep < 10) timeToSleep = 10;
+					if (timeToSleep < 10) { timeToSleep = 10; }
  				} 
 				System.out.println("time remain" + timeToSleep);
 				mySleep(1000*timeToSleep);
