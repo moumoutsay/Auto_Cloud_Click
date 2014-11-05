@@ -10,10 +10,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.Select;
 
-public class HAutoQ2 {
+public class AutoQ4 {
 	private static WebDriver driver;
 	private static String baseUrl;
-	public static final String DNS_NAME = "ec2-54-173-0-170.compute-1.amazonaws.com";
+	public static final String DNS_NAME = "MySQLq4-466643584.us-east-1.elb.amazonaws.com";
 
 	public static void main(String[] args) {
 		// setup env
@@ -44,9 +44,9 @@ public class HAutoQ2 {
 			    driver.findElement(By.id("nav_submit")).click();
 			    mySleep(300);
 			    //driver.findElement(By.id("nav_submit_")).click();
-			    driver.findElement(By.linkText("Query 2")).click();
+			    driver.findElement(By.linkText("Query 4")).click();
 			    mySleep(300);
-			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("HBase");
+			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("MySQL");
 			    mySleep(300);
 			    driver.findElement(By.id("URL")).clear();
 			    driver.findElement(By.id("URL")).sendKeys(DNS_NAME);
@@ -65,7 +65,7 @@ public class HAutoQ2 {
 				if (isNumeric(curStatus)) {
 					timeToSleep = Integer.parseInt(curStatus);
 					if ( timeToSleep < 3) timeToSleep = 3;
-					if ( timeToSleep > 100) timeToSleep = 83;
+					if ( timeToSleep > 100) timeToSleep = 50;
  				} 
 				System.out.println("time remain" + timeToSleep);
 				mySleep(1000*timeToSleep);
@@ -97,7 +97,7 @@ public class HAutoQ2 {
 	public static Integer getRunTime(WebDriver inDriver) {
 		String score = null;
 		Random rand = new Random();
-		if (rand.nextInt(50) > 5 ) {
+		if (rand.nextInt(50) > 25 ) {
 			return 1;
 		}
 		

@@ -2,13 +2,9 @@ package auto;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.support.ui.Select;
-
 
 public class AutoWarm {
 	private static WebDriver driver;
@@ -23,9 +19,7 @@ public class AutoWarm {
 	    baseUrl = "http://ec2-54-165-223-40.compute-1.amazonaws.com/q2?userid=1728883435&tweet_time=2014-03-21+15:10:30";
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-		while (true) {
-			String curStatus = null;
-			
+		while (true) {			
 			// go to submission page 
 			try {
 				driver.get(baseUrl);
