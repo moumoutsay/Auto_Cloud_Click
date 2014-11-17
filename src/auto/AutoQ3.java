@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ3 {
 	private static WebDriver driver;
 	private static String baseUrl;
-	public static final String DNS_NAME = "ec2-54-173-12-44.compute-1.amazonaws.com";
+	public static final String DNS_NAME = "NoLifeLiveTest-1042603341.us-east-1.elb.amazonaws.com";
 
 	public static void main(String[] args) {
 		// setup env

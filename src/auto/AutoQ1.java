@@ -12,15 +12,17 @@ import org.openqa.selenium.support.ui.Select;
 
 public class AutoQ1 {
 	private static WebDriver driver;
-	private static String baseUrl;
-	public static final String DNS_NAME = "MySQLq2-1162405540.us-east-1.elb.amazonaws.com";
+	private static final String BASE_URL = "https://15619project.org/";
+	private static final String DNS_NAME = "ec2-54-173-158-25.compute-1.amazonaws.com";
+	private static final String SUBMIT_URI = "submissions/1/7/"; // phase 3
+	private static final String SCORE_URI = "scoreboard/1/7/";   // phase 3
 	
 	public static void main(String[] args) {
 		// setup env
 		final FirefoxProfile profile = 
 				  new FirefoxProfile(new File("/Users/moumoutsay/Documents/course/Cloud/Profile"));
 		driver = new FirefoxDriver(profile);
-	    baseUrl = "https://15619project.org/";
+	    
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		while (true) {
@@ -28,7 +30,7 @@ public class AutoQ1 {
 			
 			// go to submission page 
 			try {
-				driver.get(baseUrl + "submissions/1/3/");
+				driver.get(BASE_URL + SUBMIT_URI);
 				WebElement element =
 						driver.findElement(By.xpath("//*[@id=\"table\"]/tbody/tr[1]/td[17]"));
 				
@@ -39,7 +41,7 @@ public class AutoQ1 {
 			// check if can submit not 
 			if (curStatus.equals("DONE") || curStatus.equals("FAILED") || curStatus.equals("CANCELED")) {
 				System.out.println("Can submit now");
-			    driver.get(baseUrl + "/scoreboard/1/3/");
+			    driver.get(BASE_URL + SCORE_URI);
 			    driver.findElement(By.id("nav_submit")).click();
 			    driver.findElement(By.id("nav_submit_")).click();
 			    driver.findElement(By.id("URL")).sendKeys(DNS_NAME);

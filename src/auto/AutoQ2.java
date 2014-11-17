@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ2 {
 	private static WebDriver driver;
 	private static String baseUrl;
-	public static final String DNS_NAME = "MySQLq2-1758896838.us-east-1.elb.amazonaws.com";
+	public static final String DNS_NAME = "NoLifeLiveTest-1042603341.us-east-1.elb.amazonaws.com";
 
 	public static void main(String[] args) {
 		// setup env
@@ -97,7 +97,7 @@ public class AutoQ2 {
 	public static Integer getRunTime(WebDriver inDriver) {
 		String score = null;
 		Random rand = new Random();
-		if (rand.nextInt(50) > 5 ) {
+		if (rand.nextInt(50) > 15 ) {
 			return 1;
 		}
 		

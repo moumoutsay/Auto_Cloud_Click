@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ14 {
 	private static WebDriver driver;
 	private static String baseUrl;
-	public static final String DNS_NAME = "MySQLq4-466643584.us-east-1.elb.amazonaws.com";
+	public static final String DNS_NAME = "myLB-511064448.us-east-1.elb.amazonaws.com";
 
 	public static void main(String[] args) {
 		// setup env
@@ -34,7 +34,7 @@ public class AutoQ14 {
 			
 			// go to submission page 
 			try {
-				driver.get(baseUrl + "submissions/1/3/");
+				driver.get(baseUrl + "submissions/1/7/");
 				WebElement element =
 						driver.findElement(By.xpath("//*[@id=\"table\"]/tbody/tr[1]/td[17]"));
 				
@@ -58,9 +58,10 @@ public class AutoQ14 {
 					submitQ4(driver);
 					break;
 				}
-				if (myRand++ == 4) {
-					myRand = 1; // wrap around
-				}
+//				if (myRand++ == 4) {
+//					myRand = 1; // wrap around
+//				}
+				myRand = rand.nextInt(4) + 1;
 			} else {  // not not submit, check the sleep time 
 				int timeToSleep = 1;
 				try {
@@ -99,7 +100,7 @@ public class AutoQ14 {
 	public static Integer getRunTime(WebDriver inDriver) {
 		String score = null;
 		Random rand = new Random();
-		if (rand.nextInt(50) > 1 ) {  // this is for live test, so we only care 1 min
+		if (rand.nextInt(50) > 10 ) {  // this is for live test, so we only care 1 min
 			return 1;
 		}
 		
@@ -138,7 +139,7 @@ public class AutoQ14 {
 
 	public static void submitQ1(WebDriver inDriver) {
 		System.out.println("Can submit now");
-	    inDriver.get(baseUrl + "/scoreboard/1/3/");
+	    inDriver.get(baseUrl + "/scoreboard/1/7/");
 	    inDriver.findElement(By.id("nav_submit")).click();
 	    inDriver.findElement(By.id("nav_submit_")).click();
 	    inDriver.findElement(By.id("URL")).sendKeys(DNS_NAME);
@@ -150,7 +151,7 @@ public class AutoQ14 {
 	public static void submitQ2(WebDriver inDriver) {
 		Integer runTime = getRunTime(inDriver);
 		System.out.println("Can submit now");
-	    inDriver.get(baseUrl + "/scoreboard/1/3/");
+	    inDriver.get(baseUrl + "/scoreboard/1/7/");
 	    inDriver.findElement(By.id("nav_submit")).click();
 	    mySleep(300);
 	    inDriver.findElement(By.linkText("Query 2")).click();
@@ -169,7 +170,7 @@ public class AutoQ14 {
 	public static void submitQ3(WebDriver inDriver) {
 		Integer runTime = getRunTime(inDriver);
 		System.out.println("Can submit now");
-	    inDriver.get(baseUrl + "/scoreboard/1/3/");
+	    inDriver.get(baseUrl + "/scoreboard/1/7/");
 	    inDriver.findElement(By.id("nav_submit")).click();
 	    mySleep(300);
 	    inDriver.findElement(By.linkText("Query 3")).click();
@@ -187,7 +188,7 @@ public class AutoQ14 {
 	public static void submitQ4(WebDriver inDriver) {
 		Integer runTime = getRunTime(inDriver);
 		System.out.println("Can submit now");
-	    inDriver.get(baseUrl + "/scoreboard/1/3/");
+	    inDriver.get(baseUrl + "/scoreboard/1/7/");
 	    inDriver.findElement(By.id("nav_submit")).click();
 	    mySleep(300);
 	    inDriver.findElement(By.linkText("Query 4")).click();
