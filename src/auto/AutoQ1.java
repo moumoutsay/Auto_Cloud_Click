@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ1 {
 	private static WebDriver driver;
 	private static final String BASE_URL = "https://15619project.org/";
-	private static final String DNS_NAME = "ec2-54-173-158-25.compute-1.amazonaws.com";
+	private static final String DNS_NAME = "ec2-54-174-14-215.compute-1.amazonaws.com";
 	private static final String SUBMIT_URI = "submissions/1/7/"; // phase 3
 	private static final String SCORE_URI = "scoreboard/1/7/";   // phase 3
 	
@@ -57,7 +57,8 @@ public class AutoQ1 {
 				} catch (Exception e) {}
 				if (isNumeric(curStatus)) {
 					timeToSleep = Integer.parseInt(curStatus);
-					if (timeToSleep < 10) { timeToSleep = 10; }
+					if ( timeToSleep < 3) timeToSleep = 3;
+					if ( timeToSleep > 100) timeToSleep = 50;
  				} 
 				System.out.println("time remain" + timeToSleep);
 				mySleep(1000*timeToSleep);
