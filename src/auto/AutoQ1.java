@@ -13,9 +13,10 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ1 {
 	private static WebDriver driver;
 	private static final String BASE_URL = "https://15619project.org/";
-	private static final String DNS_NAME = "ec2-54-174-14-215.compute-1.amazonaws.com";
+	private static final String DNS_NAME = "myELB-1649970012.us-east-1.elb.amazonaws.com";
 	private static final String SUBMIT_URI = "submissions/1/7/"; // phase 3
 	private static final String SCORE_URI = "scoreboard/1/7/";   // phase 3
+	private static final String RUN_DURATION = "1";
 	
 	public static void main(String[] args) {
 		// setup env
@@ -45,7 +46,7 @@ public class AutoQ1 {
 			    driver.findElement(By.id("nav_submit")).click();
 			    driver.findElement(By.id("nav_submit_")).click();
 			    driver.findElement(By.id("URL")).sendKeys(DNS_NAME);
-			    new Select(driver.findElement(By.id("Duration"))).selectByVisibleText("1"); // 1 min
+			    new Select(driver.findElement(By.id("Duration"))).selectByVisibleText(RUN_DURATION);
 			    driver.findElement(By.name("proceed")).click();
 			    mySleep(1000);
 			} else {  // not not submit, check the sleep time 
