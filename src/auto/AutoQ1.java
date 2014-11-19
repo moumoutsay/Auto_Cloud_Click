@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AutoQ1 {
 	private static WebDriver driver;
 	private static final String BASE_URL = "https://15619project.org/";
-	private static final String DNS_NAME = "myELB-1649970012.us-east-1.elb.amazonaws.com";
+	private static final String DNS_NAME = "ec2-54-164-15-111.compute-1.amazonaws.com";
 	private static final String SUBMIT_URI = "submissions/1/7/"; // phase 3
 	private static final String SCORE_URI = "scoreboard/1/7/";   // phase 3
 	private static final String RUN_DURATION = "1";

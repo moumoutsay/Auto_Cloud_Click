@@ -10,14 +10,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.Select;
 
-public class HAutoQ2 {
+public class HAutoQ3 {
 	private static WebDriver driver;
-
 	private static final String BASE_URL = "https://15619project.org/";
 	private static final String DNS_NAME = "ec2-54-164-15-111.compute-1.amazonaws.com";
 	private static final String SUBMIT_URI = "submissions/1/7/"; // phase 3
 	private static final String SCORE_URI = "scoreboard/1/7/";   // phase 3
-	
+
+
 	public static void main(String[] args) {
 		// setup env
 		final FirefoxProfile profile = 
@@ -46,9 +46,9 @@ public class HAutoQ2 {
 			    driver.findElement(By.id("nav_submit")).click();
 			    mySleep(300);
 			    //driver.findElement(By.id("nav_submit_")).click();
-			    driver.findElement(By.linkText("Query 2")).click();
+			    driver.findElement(By.linkText("Query 3")).click();
 			    mySleep(300);
-			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("HBase");
+			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("MySQL");
 			    mySleep(300);
 			    driver.findElement(By.id("URL")).clear();
 			    driver.findElement(By.id("URL")).sendKeys(DNS_NAME);
@@ -99,7 +99,7 @@ public class HAutoQ2 {
 	public static Integer getRunTime(WebDriver inDriver) {
 		String score = null;
 		Random rand = new Random();
-		if (rand.nextInt(50) > 15 ) {
+		if (rand.nextInt(50) > 5 ) {
 			return 1;
 		}
 		
