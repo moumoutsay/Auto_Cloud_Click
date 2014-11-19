@@ -48,7 +48,7 @@ public class AutoQ3 {
 			    //driver.findElement(By.id("nav_submit_")).click();
 			    driver.findElement(By.linkText("Query 3")).click();
 			    mySleep(300);
-			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("MySQL");
+			    new Select(driver.findElement(By.id("DbType"))).selectByVisibleText("Hbase");
 			    mySleep(300);
 			    driver.findElement(By.id("URL")).clear();
 			    driver.findElement(By.id("URL")).sendKeys(DNS_NAME);
